@@ -44,6 +44,7 @@ rollbtn.addEventListener("click", function () {
   } else if (player2Score >= 30) {
     message.textContent = "Player 2 has WON!";
     showDisplau();
+    // check if the player dice = 1 reset the score to 0
   } else if (randomNumber === 1) {
     if (play1Turn) {
       player1Score = 0;
@@ -65,6 +66,7 @@ rollbtn.addEventListener("click", function () {
   }
 });
 
+// when a player click on hold will save the score and change the turn
 
 Hold.addEventListener("click", function () {
   if (play1Turn) {
@@ -78,6 +80,8 @@ Hold.addEventListener("click", function () {
 resetbtn.addEventListener("click", function () {
   reset();
 });
+
+// reset all valuse
 
 function reset() {
   message.textContent = "Player 1 Turn";
