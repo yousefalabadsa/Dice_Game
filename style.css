@@ -5,7 +5,6 @@ body {
   --color-3: #ffd3b6;
   --color-4: #ffaaa5;
   --color-5: #ff8b94;
-
   margin: 0;
   padding: 0;
 }
@@ -57,6 +56,10 @@ button {
 }
 
 #rollbtn {
+  background-color: var(--color-4);
+}
+
+#Hold{
   background-color: var(--color-4);
 }
 
