@@ -8,6 +8,7 @@ let play1Turn = true;
 const player1Dice = document.getElementById("player1Dice");
 const player2Dice = document.getElementById("player2Dice");
 const message = document.getElementById("message");
+const Hold = document.getElementById("Hold");
 const player1ScoreBoard = document.getElementById("player1ScoreBoard");
 const player2ScoreBoard = document.getElementById("player2ScoreBoard");
 const rollbtn = document.getElementById("rollbtn");
@@ -24,16 +25,10 @@ rollbtn.addEventListener("click", function () {
     player1Score += randomNumber;
     player1ScoreBoard.textContent = player1Score;
     player1Dice.textContent = randomNumber;
-    player1Dice.classList.remove("active");
-    player2Dice.classList.add("active");
-    message.textContent = "Player 2 Turn";
   } else {
     player2Score += randomNumber;
     player2ScoreBoard.textContent = player2Score;
     player2Dice.textContent = randomNumber;
-    player2Dice.classList.remove("active");
-    player1Dice.classList.add("active");
-    message.textContent = "Player 1 Turn";
   }
 
   // check if a plyer has won
@@ -49,16 +44,42 @@ rollbtn.addEventListener("click", function () {
   } else if (player2Score >= 30) {
     message.textContent = "Player 2 has WON!";
     showDisplau();
-  }
+  } else if (randomNumber === 1) {
+    if (play1Turn) {
+      player1Score = 0;
+      player1ScoreBoard.textContent = player1Score;
+      player1Dice.textContent = randomNumber;
+      player1Dice.classList.remove("active");
+      player2Dice.classList.add("active");
+      message.textContent = "Player 2 Turn";
+    } else {
+      player2Score = 0;
+      player2ScoreBoard.textContent = player2Score;
+      player2Dice.textContent = randomNumber;
+      player2Dice.classList.remove("active");
+      player1Dice.classList.add("active");
+      message.textContent = "Player 1 Turn";
+    }
 
+    play1Turn = !play1Turn;
+  }
+});
+
+
+Hold.addEventListener("click", function () {
+  if (play1Turn) {
+    message.textContent = "Player 2 Turn";
+  } else{
+    message.textContent = "Player 1 Turn";
+  }
   play1Turn = !play1Turn;
 });
 
 resetbtn.addEventListener("click", function () {
-  recet();
+  reset();
 });
 
-function recet() {
+function reset() {
   message.textContent = "Player 1 Turn";
   player1ScoreBoard.textContent = 0;
   player2ScoreBoard.textContent = 0;
@@ -70,4 +91,5 @@ function recet() {
   resetbtn.style.display = "none";
   player2Dice.classList.remove("active");
   player1Dice.classList.add("active");
+  play1Turn = true;
 }
